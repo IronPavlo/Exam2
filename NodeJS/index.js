@@ -16,9 +16,20 @@ let db;
 async function connect() {
   try {
     conn = await client.connect();
-    db = conn.db("PortfolioSite");
+    db = conn.db("PortFolioSite");
   } catch (error) {
     console.error(error);
   }
 }
 connect();
+
+app.get("/users", async (req, res) => {
+  let collection = await db.collection("Users");
+
+  let result = await collection.find({}).toArray();
+  res.send(result).status(200);
+});
+
+app.listen(PORT, () => {
+  console.log("Server Started");
+});
