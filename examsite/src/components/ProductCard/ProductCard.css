@@ -1,0 +1,14 @@
+.imageWrapper{
+    height:200px;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.prodCardName{
+font-weight: bold;
+font-size: 2em;
+}
+.prodCardPrice{
+    font-size: 1.5em;
+}

@@ -2,11 +2,13 @@
 ul.navbar{
     list-style-type: none;
     margin: 0;
-    
+    padding: 0;
     overflow: hidden;
     background-color: #333;
     display: flex;
+    position: sticky;
     flex-direction: row;
+    justify-content: space-between
 }
 
 .navbar li{
@@ -16,10 +18,13 @@ ul.navbar{
 .navbar div{
     display: flex;
     flex-direction: row;
+    margin: 0 5vw;
+    
 }
 .navbar a li {
     text-decoration:none;
     color: white;
+    
 }
 .navbar li:hover{
     background-color: #dfdede;

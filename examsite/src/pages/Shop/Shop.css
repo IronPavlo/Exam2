@@ -1,0 +1,9 @@
+
+.shopGrid{
+    display: grid;
+}
+@media(min-width:500px){
+    .shopGrid{
+
+    }
+}

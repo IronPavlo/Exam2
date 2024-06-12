@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import './App.css'
 import HomePage from './pages/HomePage/HomePage.jsx';
+import Shop from './pages/Shop/Shop.jsx';
+import ProductPage from './pages/ProductPage/ProductPage.jsx';
 
 function App() {
 
@@ -13,8 +15,8 @@ function App() {
     
       <Routes>
         <Route path="/" element={<HomePage/>}></Route>
-        <Route path="/shop"></Route>
-        <Route path="/shop/:itemID"></Route>
+        <Route path="/shop" element={<Shop/>}></Route>
+        <Route path="/shop/:itemID" element={<ProductPage/>}></Route>
         <Route path="/cart"></Route>
 
       </Routes>
