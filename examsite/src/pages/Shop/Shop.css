@@ -1,9 +1,12 @@
 
 .shopGrid{
     display: grid;
+    margin: 10px;
 }
 @media(min-width:500px){
     .shopGrid{
-
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 10px;
     }
 }
