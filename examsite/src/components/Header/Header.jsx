@@ -10,7 +10,7 @@ function Header() {
     return (
       <>
         <header>
-            <div className="logo"><h1>AK Leather</h1></div>
+            <div className="logo"><h1>IC Leather</h1></div>
             <Navbar/>
         </header>
 
