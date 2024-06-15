@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar"
-
+import "./Header.css"
 
 
 function Header() {
@@ -10,7 +10,7 @@ function Header() {
     return (
       <>
         <header>
-            <div className="logo"><h1>IC Leather</h1></div>
+            <div className="logo"><img src="/src/assets/ICLeather.svg" alt="" /> <h1>Leather Goods</h1></div>
             <Navbar/>
         </header>
 
