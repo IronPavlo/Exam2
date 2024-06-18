@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import Header from '../../components/Header/Header';
-import { Link, useParams } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 import "./Cart.css"
 
 function Cart(props) {
@@ -28,32 +28,34 @@ useEffect(()=>{},[cartSize])
 
         {cartParsed.map((product,index)=>{
 
-          return  <Link key={index} to={`/shop/${product.id}`}>
-                    <div className='cartItem' id={`${product.id}${product.quantity}${product.size}`}>
-                      <div className='cartItemImageWrapper'>imgplaceholder</div>
-                      <div className='cartItemDetails'>
-                        <h3>{product.name}</h3>
-                        <h5>Size: {product.size.toUpperCase()}</h5>
-                      </div>
-                      <div className='cartItemQuantity'>
-                        x{product.quantity}
-                      </div>
-                      <div className='cartItemPrice'>
-                      €{Number(product.price) * Number(product.quantity)}
-                      </div>
-                      <div>
-                        <button className='removeFromCart' onClick={()=>{
-                          let cartItem=document.getElementById(`${product.id}${product.quantity}${product.size}`);
-                          console.log(cartItem)
-                          console.log(index)
-                          cartParsed.splice(index,1)
-                          console.log(cartParsed)
-                          localStorage.setItem("cart",JSON.stringify(cartParsed))
-                          cartSizeSet(cartParsed.length)
-                        }}>X</button>
-                      </div>
+          return  <div key={index} className='cartItem' id={`${product.id}${product.quantity}${product.size}`}>
+                    <Link to={`/shop/${product.id}`}>
+                    <div className='cartItemImageWrapper'>imgplaceholder</div>
+                    <div className='cartItemDetails'>
+                      <h3>{product.name}</h3>
+                      <h5>Size: {product.size.toUpperCase()}</h5>
                     </div>
-                  </Link>
+                    </Link>
+                    <div className='cartItemQuantity'>
+                      x{product.quantity}
+                    </div>
+                    <div className='cartItemPrice'>
+                    €{Number(product.price) * Number(product.quantity)}
+                    </div>
+                    
+                    <div>
+                      <button className='removeFromCart' onClick={()=>{
+                        let cartItem=document.getElementById(`${product.id}${product.quantity}${product.size}`);
+                        console.log(cartItem)
+                        console.log(index)
+                        cartParsed.splice(index,1)
+                        console.log(cartParsed)
+                        localStorage.setItem("cart",JSON.stringify(cartParsed))
+                        cartSizeSet(cartParsed.length)
+                      }}>X</button>
+                    </div>
+                  </div>
+                  
         })}
       </div>
     </div> 
