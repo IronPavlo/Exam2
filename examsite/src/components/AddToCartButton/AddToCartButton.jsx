@@ -5,6 +5,7 @@ import "./AddToCartButton.css";
 
 function AddToCartButton(props) {
     const[selectedQuantity,setQuantity] = useState(0);
+
     const addedProduct=props.product;
     let productPackage={
       id:addedProduct.prodID,
@@ -14,13 +15,12 @@ function AddToCartButton(props) {
       quantity:selectedQuantity
     }
     useEffect(()=>{
-
     },[selectedQuantity])
 
     const maxQuantity=props.stock
     
     const handleSubmit = (e) => {
-      
+  
       e.preventDefault();
           let storage=localStorage.getItem("cart");
           if(storage===null && selectedQuantity!=0){
@@ -59,13 +59,13 @@ function AddToCartButton(props) {
           }}/>
           <input type='button' name='mobileQuantityPlusButton' id='mobileQuantityPlusButton' className='mobileQuantity' value={"+"} onClick={()=>{
             if(selectedQuantity+1<=maxQuantity){
-              setQuantity(selectedQuantity+1)
+              setQuantity(Number(selectedQuantity)+1)
             }
             
           }}/>
           <input type='button' name='mobileQuantityMinusButton' id='mobileQuantityMinusButton' className='mobileQuantity' value={"-"} onClick={()=>{
             if(selectedQuantity-1>=0){
-              setQuantity(selectedQuantity-1)
+              setQuantity(Number(selectedQuantity)-1)
             }
             
           }} />

@@ -12,6 +12,7 @@
 .cartItem{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .cartItemExtra{
     display: flex;
@@ -54,4 +55,10 @@ flex-grow: 1;
 }
 .cartContentTopPrice{
     width: 60px;
+    align-content: center;
+    height: 100%;
+}
+.removeFromCart{
+    background-color: white;
+    color: black;
 }
