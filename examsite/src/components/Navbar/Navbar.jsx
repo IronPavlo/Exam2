@@ -18,11 +18,12 @@ function Navbar() {
       <>
         <ul className="navbar">
             <div>
-              <Link to={"/"}><li>Home</li></Link>
-              <Link to={"/shop"}><li>Shop</li></Link>
+              <Link to={"/"}><span>Home</span></Link>
+              <Link to={"/shop"}><span>Shop</span></Link>
+              <Link to={"/sell"}><span>Sell</span></Link>
             </div>
             <div>
-              <Link to={"/cart"} className="cart"><li>{cartSize} Cart</li></Link>
+              <Link to={"/cart"} className="cart"><span>{cartSize} Cart</span></Link>
             </div>
         </ul>
         

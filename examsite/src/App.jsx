@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage/HomePage.jsx';
 import Shop from './pages/Shop/Shop.jsx';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 import Cart from './pages/Cart/Cart.jsx';
+import SellProduct from './pages/SellProduct/SellProduct.jsx';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/shop" element={<Shop/>}></Route>
         <Route path="/shop/:itemID" element={<ProductPage/>}></Route>
         <Route path="/cart" element={<Cart/>}></Route>
+        <Route path="/sell" element={<SellProduct/>}></Route>
 
       </Routes>
     </>

@@ -11,7 +11,7 @@ ul.navbar{
     justify-content: space-between
 }
 
-.navbar li{
+.navbar span{
     
     padding: 10px;
 }
@@ -21,15 +21,15 @@ ul.navbar{
     margin: 0 5vw;
     
 }
-.navbar a li {
+.navbar a span {
     text-decoration:none;
     color: white;
     
 }
-.navbar li:hover{
+.navbar span:hover{
     background-color: #dfdede;
 }
-.navbar a li:hover {
+.navbar a span:hover {
     color: rgb(91, 91, 91);
 }
 

@@ -2,6 +2,7 @@
 .shopGrid{
     display: grid;
     margin: 10px;
+    justify-content: center;
 }
 @media(min-width:500px){
     .shopGrid{
