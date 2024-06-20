@@ -24,12 +24,14 @@ function SellProduct(props) {
   }
   )
 
+
   // product template
     // {
     //   name:,
     //   sizes:[],
     //   price:,
     //   stock:{XS:0,S:0,M:0,L:0,XL:0}
+    
     // }
     
 
@@ -46,18 +48,22 @@ function SellProduct(props) {
             document.getElementById('lSizeOption'),
             document.getElementById('xlSizeOption')
           ]
-            if((sizeArray[0].checked || sizeArray[1].checked || sizeArray[2].checked || sizeArray[3].checked || sizeArray[4].checked)){
-              console.log('lol')
+            if(((sizeArray[0].checked && productStored.stock.XS>0) || 
+            (sizeArray[1].checked && productStored.stock.S>0) || 
+            (sizeArray[2].checked  && productStored.stock.M>0) || 
+            (sizeArray[3].checked && productStored.stock.L>0) || 
+            (sizeArray[4].checked && productStored.stock.XL>0)) && productStored.name!=""){
+              console.log(1)
             }
         
-        
+            
         
         }}>
         <label htmlFor="formProdName"> Product Name </label>
         <input type="text" name='formProdName' id='formProdName' defaultValue={productStored.name} onChange={()=>{
           productStored.name=document.getElementById('formProdName').value;
           localStorage.setItem("currentProd",JSON.stringify(productStored))
-          console.log(product.name)
+          console.log(productStored)
         }}/>
         <label htmlFor=""></label>
         <div>Sizes</div>
@@ -67,9 +73,12 @@ function SellProduct(props) {
             if(productStored.sizes.includes("XS")){
               return <input key={index} type="checkbox" name="xsSizeOption" id="xsSizeOption" defaultChecked onChange={()=>{
                         if(productStored.sizes.includes("XS")){
+                          productStored.stock.XS=0;
+                          console.log(productStored.stock.XS)    
                           productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
                           localStorage.setItem("currentProd",JSON.stringify(productStored))
-                          console.log(productStored.sizes)
+
+                          console.log(productStored.sizes)                   
                         }else{
                           productStored.sizes.push("XS")
                           localStorage.setItem("currentProd",JSON.stringify(productStored))
@@ -216,23 +225,57 @@ function SellProduct(props) {
         <div>Stock</div>
         <div>
           <label htmlFor="xsSizeStock">Extra Small {"(XS)"}</label>
-          <input type="number" name="xsSizeStock" id="xsSizeStock" min={0} placeholder='0'/>
+          <input type="number" name="xsSizeStock" id="xsSizeStock" min={0} defaultValue={0}  onChange={(e)=>{
+            if (productStored.sizes.includes("XS")) {
+              productStored.stock.XS=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }
+         
+          }
+        }/>
           <br />
           <label htmlFor="sSizeStock"> Small {"(S)"}</label>
-          <input type="number" name="sSizeStock" id="sSizeStock" min={0} placeholder='0'/>
+          <input type="number" name="sSizeStock" id="sSizeStock" min={0} defaultValue={0} onChange={(e)=>{
+            if (productStored.sizes.includes("S")) {
+              productStored.stock.S=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }
+            
+            }}/>
           <br />
           <label htmlFor="mSizeStock">Medium {"(M)"}</label>
-          <input type="number" name="mSizeStock" id="mSizeStock" min={0} placeholder='0'/>
+          <input type="number" name="mSizeStock" id="mSizeStock" min={0} defaultValue={0} onChange={(e)=>{
+            if (productStored.sizes.includes("M")) {
+              productStored.stock.M=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }
+            
+            }}/>
           <br />
           <label htmlFor="lSizeStock">Large {"(L)"}</label>
-          <input type="number" name="lSizeStock" id="lSizeStock" min={0} placeholder='0'/>
+          <input type="number" name="lSizeStock" id="lSizeStock" min={0} defaultValue={0} onChange={(e)=>{
+            if (productStored.sizes.includes("L")) {
+              productStored.stock.L=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }
+            
+            }}/>
           <br />
           <label htmlFor="xlSizeStock">Extra Large {"(XS)"}</label>
-          <input type="number" name="xlSizeStock" id="xlSizeStock" min={0} placeholder='0'/>
+          <input type="number" name="xlSizeStock" id="xlSizeStock" min={0} defaultValue={0} onChange={(e)=>{
+            if (productStored.sizes.includes("XL")) {
+              productStored.stock.XL=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }
+            }}/>
         </div>
         <div>Price</div>
         <label htmlFor="formProdPrice">€</label>
-        <input type="number" name="formProdPrice" id="formProdPrice" min={0} required/>
+        <input type="number" name="formProdPrice" id="formProdPrice" min={0} defaultValue={0} required onChange={(e)=>{
+            
+              productStored.price=e.target.value
+              localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }} />
         <button type="submit">Add Product</button>
       </form>
     </div>

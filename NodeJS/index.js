@@ -36,6 +36,28 @@ app.get("/products/:id", async (req, res) => {
   let result = await collection.find({ prodID: productID }).toArray();
   res.send(result).status(200);
 });
+app.post("/sell", async (req, res) => {
+  try {
+    let collection = await db.collection("Products");
+    let product = req.body;
+
+    res.json(product);
+  } catch (error) {
+    res.json(error);
+  }
+});
+app.patch("/update/:id", async (req, res) => {
+  try {
+    let collection = await db.collection("Products");
+    let productID = req.params.id;
+    let product = req.body;
+    collection.replaceOne({ prodID: productID }, product);
+
+    res.send(result).status(200);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 app.listen(PORT, () => {
   console.log("Server Started");
