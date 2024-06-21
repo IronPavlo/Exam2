@@ -6,12 +6,12 @@ import "./Cart.css"
 function Cart(props) {
 
 const[cartSize,cartSizeSet]=useState(0)
-
+const[reRender,reRenderSet]=useState(false)
 const cartStorage = localStorage.getItem("cart")
 const cartParsed = JSON.parse(cartStorage)
-console.log(cartParsed)
-useEffect(()=>{},[cartSize])
+useEffect(()=>{
 
+},[cartSize])
   return (
     <>
     <Header/>
@@ -45,13 +45,16 @@ useEffect(()=>{},[cartSize])
                     
                     <div>
                       <button className='removeFromCart' onClick={()=>{
-                        let cartItem=document.getElementById(`${product.id}${product.quantity}${product.size}`);
-                        console.log(cartItem)
-                        console.log(index)
+              
                         cartParsed.splice(index,1)
-                        console.log(cartParsed)
                         localStorage.setItem("cart",JSON.stringify(cartParsed))
                         cartSizeSet(cartParsed.length)
+                        if(reRender){
+                          reRenderSet(false);
+                        }else{
+                          reRenderSet(true);
+                        }
+                        
                       }}>X</button>
                     </div>
                   </div>

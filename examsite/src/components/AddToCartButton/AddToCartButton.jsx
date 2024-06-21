@@ -8,7 +8,7 @@ function AddToCartButton(props) {
 
     const addedProduct=props.product;
     let productPackage={
-      id:addedProduct.prodID,
+      id:addedProduct._id,
       name:addedProduct.name,
       price:addedProduct.price,
       size:props.selectedSize,
@@ -54,8 +54,6 @@ function AddToCartButton(props) {
         <label htmlFor="quantity">Quantity: </label>
         <input type="number" name="quantity" id="quantity" min={0} max={maxQuantity} value={selectedQuantity} onChange={(e)=>{
               setQuantity(e.target.value)
-              console.log(selectedQuantity)
-              console.log(productPackage)
           }}/>
           <input type='button' name='mobileQuantityPlusButton' id='mobileQuantityPlusButton' className='mobileQuantity' value={"+"} onClick={()=>{
             if(selectedQuantity+1<=maxQuantity){

@@ -5,6 +5,13 @@
     justify-content: center;
     align-items: center;
 }
+.imageWrapper img{
+    height:150px;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .prodCardName{
 font-weight: bold;
 font-size: 2em;

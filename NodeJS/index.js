@@ -6,7 +6,7 @@ app.use(cors({ origin: ["http://127.0.0.1:5500", "http://localhost:5173"] }));
 
 app.use(express.json());
 const PORT = 8080;
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const connectionString =
   "mongodb+srv://mmokasko:hxbFuPwAReRlzOQX@cluster0.pl0rowk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -31,9 +31,9 @@ app.get("/products", async (req, res) => {
 });
 app.get("/products/:id", async (req, res) => {
   let collection = await db.collection("Products");
-  let productID = req.params.id;
-  console.log(productID);
-  let result = await collection.find({ prodID: productID }).toArray();
+  let result = await collection
+    .find({ _id: new ObjectId(req.params.id) })
+    .toArray();
   res.send(result).status(200);
 });
 app.post("/sell", async (req, res) => {
@@ -49,9 +49,8 @@ app.post("/sell", async (req, res) => {
 app.patch("/update/:id", async (req, res) => {
   try {
     let collection = await db.collection("Products");
-    let productID = req.params.id;
     let product = req.body;
-    collection.replaceOne({ prodID: productID }, product);
+    collection.replaceOne({ _id: new ObjectId(req.params.id) }, product);
 
     res.send(result).status(200);
   } catch (error) {

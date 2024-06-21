@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Header from '../../components/Header/Header'
 import "./Shop.css"
 import ProductCard from '../../components/ProductCard/ProductCard'
+import Filter from '../../components/Filter/Filter'
 
 function Shop() {
 
@@ -37,7 +38,7 @@ const productData=useRef(0)
     <section className='shopActual'>
         <div className='shopWrapper'>
             <div className='filterWrapper'>
-                ph
+            <Filter/>
             </div>
             <br />
             <div className='shopGrid'>
