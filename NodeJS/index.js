@@ -90,12 +90,11 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
 
     switch (size) {
       case "XS":
-        collection.update(
-          { _id: new ObjectId(req.params.id) },
+        collection.updateOne({ _id: new ObjectId(req.params.id) }, [
           {
             $set: { "stock.XS": product[0].stock.XS - boughtstock },
-          }
-        );
+          },
+        ]);
         break;
       case "S":
         console.log(size);
@@ -106,28 +105,25 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         ]);
         break;
       case "M":
-        collection.update(
-          { _id: new ObjectId(req.params.id) },
+        collection.updateOne({ _id: new ObjectId(req.params.id) }, [
           {
             $set: { "stock.M": product[0].stock.M - boughtstock },
-          }
-        );
+          },
+        ]);
         break;
       case "L":
-        collection.update(
-          { _id: new ObjectId(req.params.id) },
+        collection.updateOne({ _id: new ObjectId(req.params.id) }, [
           {
             $set: { "stock.L": product[0].stock.L - boughtstock },
-          }
-        );
+          },
+        ]);
         break;
       case "XL":
-        collection.update(
-          { _id: new ObjectId(req.params.id) },
+        collection.updateOne({ _id: new ObjectId(req.params.id) }, [
           {
             $set: { "stock.L": product[0].stock.XL - boughtstock },
-          }
-        );
+          },
+        ]);
         break;
       default:
         break;
