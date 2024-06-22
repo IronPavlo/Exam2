@@ -10,6 +10,7 @@ const[cartSize,cartSizeSet]=useState(0)
 const[reRender,reRenderSet]=useState(false)
 const cartStorage = localStorage.getItem("cart")
 const cartParsed = JSON.parse(cartStorage)
+console.log(cartParsed)
 useEffect(()=>{
 
 },[cartSize])

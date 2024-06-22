@@ -11,7 +11,12 @@ function CheckOut(props) {
 
   return (
     <>
-    
+      <button onClick={()=>{
+        for (let i = 0; i < cartContent.length; i++) {
+          const product = cartContent[i];
+          
+        }
+      }}>Checkout</button>
     </>
       
   )

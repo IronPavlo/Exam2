@@ -11,7 +11,6 @@ const [selectedSize,setSelectedSize]=useState("sizeSelect")
 const { itemID } = useParams();
     useEffect(()=>{
         fetchData()
- 
     },[])
     useEffect(()=>{
  

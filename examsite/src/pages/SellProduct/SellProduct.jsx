@@ -248,7 +248,8 @@ function SellProduct(props) {
           <label htmlFor="xsSizeStock">Extra Small {"(XS)"}</label>
           <input type="number" name="xsSizeStock" id="xsSizeStock" min={0} defaultValue={0}  onChange={(e)=>{
             if (productStored.sizes.includes("XS")) {
-              productStored.stock.XS=e.target.value
+              productStored.stock.XS=Number(e.target.value)
+              console.log(productStored.stock.XS)
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }
          
@@ -258,7 +259,7 @@ function SellProduct(props) {
           <label htmlFor="sSizeStock"> Small {"(S)"}</label>
           <input type="number" name="sSizeStock" id="sSizeStock" min={0} defaultValue={0} onChange={(e)=>{
             if (productStored.sizes.includes("S")) {
-              productStored.stock.S=e.target.value
+              productStored.stock.S=Number(e.target.value)
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }
             
@@ -267,7 +268,7 @@ function SellProduct(props) {
           <label htmlFor="mSizeStock">Medium {"(M)"}</label>
           <input type="number" name="mSizeStock" id="mSizeStock" min={0} defaultValue={0} onChange={(e)=>{
             if (productStored.sizes.includes("M")) {
-              productStored.stock.M=e.target.value
+              productStored.stock.M=Number(e.target.value)
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }
             
@@ -276,7 +277,7 @@ function SellProduct(props) {
           <label htmlFor="lSizeStock">Large {"(L)"}</label>
           <input type="number" name="lSizeStock" id="lSizeStock" min={0} defaultValue={0} onChange={(e)=>{
             if (productStored.sizes.includes("L")) {
-              productStored.stock.L=e.target.value
+              productStored.stock.L=Number(e.target.value)
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }
             
@@ -285,7 +286,7 @@ function SellProduct(props) {
           <label htmlFor="xlSizeStock">Extra Large {"(XS)"}</label>
           <input type="number" name="xlSizeStock" id="xlSizeStock" min={0} defaultValue={0} onChange={(e)=>{
             if (productStored.sizes.includes("XL")) {
-              productStored.stock.XL=e.target.value
+              productStored.stock.XL=Number(e.target.value)
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }
             }}/>

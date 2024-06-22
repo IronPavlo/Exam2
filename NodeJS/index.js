@@ -25,9 +25,7 @@ connect();
 
 app.get("/products/:search/:query", async (req, res) => {
   let collection = await db.collection("Products");
-  console.log(req.params.search);
 
-  //console.log(aggregTest);
   let result = await collection.find({}).toArray();
   if (req.params.search == "yes") {
     let aggregTest = await collection
@@ -72,10 +70,70 @@ app.post("/sell", async (req, res) => {
     let collection = await db.collection("Products");
     let product = req.body;
     console.log(product);
+
     collection.insertOne(product);
     res.json(product).status(200);
   } catch (error) {
     res.json(error);
+  }
+});
+app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
+  try {
+    let collection = await db.collection("Products");
+    let product = req.body;
+    let boughtstock = req.params.boughtstock;
+    let size = req.params.size.toUpperCase();
+    //console.log(size);
+
+    switch (size) {
+      case "XS":
+        collection.update(
+          { _id: new ObjectId(req.params.id) },
+          {
+            $inc: { "stock.XS": -boughtstock },
+          }
+        );
+        break;
+      case "S":
+        console.log(size);
+        collection.updateOne(
+          { _id: new ObjectId(req.params.id) },[{
+            $set: { "stock.S":  },
+          }]
+          
+        );
+        break;
+      case "M":
+        collection.update(
+          { _id: new ObjectId(req.params.id) },
+          {
+            $inc: { "stock.M": -boughtstock },
+          }
+        );
+        break;
+      case "L":
+        collection.update(
+          { _id: new ObjectId(req.params.id) },
+          {
+            $inc: { "stock.L": -boughtstock },
+          }
+        );
+        break;
+      case "XL":
+        collection.update(
+          { _id: new ObjectId(req.params.id) },
+          {
+            $inc: { "stock.L": -boughtstock },
+          }
+        );
+        break;
+      default:
+        break;
+    }
+
+    res.send(result).status(200);
+  } catch (error) {
+    res.send(error);
   }
 });
 app.patch("/update/:id", async (req, res) => {
