@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import Header from '../../components/Header/Header';
 import {Link, useParams } from 'react-router-dom';
 import "./Cart.css"
+import CheckOut from '../../components/CheckOut/CheckOut';
 
 function Cart(props) {
 
@@ -60,6 +61,7 @@ useEffect(()=>{
                   </div>
                   
         })}
+        <CheckOut cart={cartParsed}/>
       </div>
     </div> 
     </>
