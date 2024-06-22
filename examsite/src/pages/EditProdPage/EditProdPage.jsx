@@ -3,32 +3,50 @@ import Header from '../../components/Header/Header';
 import { Form, useParams } from 'react-router-dom';
 
 
-function EditProdPage(props) {
+function EditProdPage() {
 
+    const { itemID } = useParams();
 
-
-  if(localStorage.getItem("currentProd")==null){
-    localStorage.setItem("currentProd",JSON.stringify({
+  
+  const[productStored,setProductStorage]=useState({
     name:'',
     sizes:[],
     price:'',
     stock:{XS:0,S:0,M:0,L:0,XL:0},
-    imgURL:""
-  }))
-  }
-  const[productStored,setProductStorage]=useState(props.product)
+    imgURL:"",
+    details:""
+  })
+  
   const[product,setProductData]=useState({
     name:'',
     sizes:[],
     price:'',
     stock:{XS:0,S:0,M:0,L:0,XL:0},
-    imgURL:""
+    imgURL:"",
+    details:""
   }
   )
+useEffect(()=>{
+    fetchData()
+    console.log(productStored.stock.XS)
+},[])
+
   const fetchData=async()=>{
     try {
+      
+        const response = await fetch(`http://localhost:8080/products/${itemID}`);
+        const result = await response.json()
+        console.log(result)
+        setProductStorage(result[0])
+        setProductData(result[0])
+    } catch (error) {
+        console.error('Error fetching data:', error)
+    }
+}
+  const fetchDataPatch=async()=>{
+    try {
       console.log(productStored)
-        let response = await fetch(`http://localhost:8080/update/${productStored._id}`,{method:"PATCH",body:JSON.stringify(productStored),headers: {
+        let response = await fetch(`http://localhost:8080/update/${itemID}`,{method:"PATCH",body:JSON.stringify(productStored),headers: {
           "Content-type": "application/json; charset=UTF-8",
         },});
         return response.json()
@@ -65,7 +83,7 @@ function EditProdPage(props) {
             (sizeArray[2].checked  && productStored.stock.M>0) || 
             (sizeArray[3].checked && productStored.stock.L>0) || 
             (sizeArray[4].checked && productStored.stock.XL>0)) && productStored.name!=""){
-                fetchData()
+                fetchDataPatch()
               console.log(1)
             }
         
@@ -235,51 +253,60 @@ function EditProdPage(props) {
         </ul>
         <div>Stock</div>
         <div>
+            <div>Previous Stock</div>
+            <span>XS:{product.stock.XS} </span>
+            <span>S:{product.stock.S} </span>
+            <span>M:{product.stock.M} </span>
+            <span>L:{product.stock.L} </span>
+            <span>XL:{product.stock.XL} </span>
+        </div>
+
+        <div>
           <label htmlFor="xsSizeStock">Extra Small {"(XS)"}</label>
           <input type="number" name="xsSizeStock" id="xsSizeStock" min={0} defaultValue={productStored.stock.XS}  onChange={(e)=>{
-            if (productStored.sizes.includes("XS")) {
-              productStored.stock.XS=e.target.value
-            }
+            
+              productStored.stock.XS=Number(e.target.value)
+            
          
           }
         }/>
           <br />
           <label htmlFor="sSizeStock"> Small {"(S)"}</label>
           <input type="number" name="sSizeStock" id="sSizeStock" min={0} defaultValue={productStored.stock.S} onChange={(e)=>{
-            if (productStored.sizes.includes("S")) {
-              productStored.stock.S=e.target.value
-            }
+            
+              productStored.stock.S=Number(e.target.value)
+            
             
             }}/>
           <br />
           <label htmlFor="mSizeStock">Medium {"(M)"}</label>
           <input type="number" name="mSizeStock" id="mSizeStock" min={0} defaultValue={productStored.stock.M} onChange={(e)=>{
-            if (productStored.sizes.includes("M")) {
-              productStored.stock.M=e.target.value
-            }
+            
+              productStored.stock.M=Number(e.target.value)
+            
             
             }}/>
           <br />
           <label htmlFor="lSizeStock">Large {"(L)"}</label>
           <input type="number" name="lSizeStock" id="lSizeStock" min={0} defaultValue={productStored.stock.L} onChange={(e)=>{
-            if (productStored.sizes.includes("L")) {
-              productStored.stock.L=e.target.value
-            }
+           
+              productStored.stock.L=Number(e.target.value)
+             
             
             }}/>
           <br />
           <label htmlFor="xlSizeStock">Extra Large {"(XS)"}</label>
           <input type="number" name="xlSizeStock" id="xlSizeStock" min={0} defaultValue={productStored.stock.XL} onChange={(e)=>{
-            if (productStored.sizes.includes("XL")) {
-              productStored.stock.XL=e.target.value
-            }
+           
+              productStored.stock.XL=Number(e.target.value)
+            
             }}/>
         </div>
         <div>Price</div>
         <label htmlFor="formProdPrice">€</label>
-        <input type="number" name="formProdPrice" id="formProdPrice" min={0} defaultValue={productStored.price} required onChange={(e)=>{
+        <input type="number" name="formProdPrice" id="formProdPrice" min={0} step={0.01} defaultValue={productStored.price} required onChange={(e)=>{
             
-              productStored.price=e.target.value
+              productStored.price=Number(e.target.value)
     
             }} />
         <br />
@@ -288,6 +315,12 @@ function EditProdPage(props) {
             productStored.imgURL=e.target.value
           }} />
            <br /><br />
+           <label htmlFor="description">Details</label>
+           <br />
+           <textarea name="description" id="description" style={{width:'90%', height:"7vh"}} onChange={(e)=>{
+            productStored.details=e.target.value
+            }}></textarea>
+            <br />
         <button type="submit">Add Product</button>
       </form>
     </div>

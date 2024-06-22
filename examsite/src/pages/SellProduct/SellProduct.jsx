@@ -22,7 +22,8 @@ function SellProduct(props) {
     sizes:[],
     price:'',
     stock:{XS:0,S:0,M:0,L:0,XL:0},
-    imgURL:""
+    imgURL:"",
+    details:""
   }
   )
   const fetchData=async()=>{
@@ -291,21 +292,30 @@ function SellProduct(props) {
             }
             }}/>
         </div>
-        <div>Price</div>
-        <label htmlFor="formProdPrice">€</label>
-        <input type="number" name="formProdPrice" id="formProdPrice" min={0} defaultValue={0} required onChange={(e)=>{
+        <label htmlFor="formProdPrice">Price</label>
+        <br />
+        <span>€</span>
+        <input type="number" name="formProdPrice" id="formProdPrice" min={0} placeholder={0} required onChange={(e)=>{
             
               productStored.price=e.target.value
               localStorage.setItem("currentProd",JSON.stringify(productStored));
             }} />
         <br />
-        <div>Product Image</div>
-        <input type="url" name="imageURLProd" id="imageURLProd" defaultValue={productStored.imgURL} placeholder='https://www.randomimage.com' required onChange={(e)=>{
+        <label htmlFor="imageURLProd">Product Image</label>
+        <br />
+        <input type="url" name="imageURLProd" id="imageURLProd"style={{width:'70%'}} defaultValue={productStored.imgURL} placeholder='https://www.randomimage.com' required onChange={(e)=>{
           
             productStored.imgURL=e.target.value
             localStorage.setItem("currentProd",JSON.stringify(productStored));
           }} />
            <br /><br />
+           <label htmlFor="description">Details</label>
+           <br />
+           <textarea name="description" id="description" style={{width:'90%', height:"7vh"}} onChange={(e)=>{
+            productStored.details=e.target.value
+            localStorage.setItem("currentProd",JSON.stringify(productStored));
+            }}></textarea>
+            <br />
         <button type="submit">Add Product</button>
       </form>
     </div>

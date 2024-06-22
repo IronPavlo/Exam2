@@ -126,6 +126,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         ]);
         break;
       default:
+        console.log("sodasdas");
         break;
     }
 
@@ -138,7 +139,19 @@ app.patch("/update/:id", async (req, res) => {
   try {
     let collection = await db.collection("Products");
     let product = req.body;
-    collection.replaceOne({ _id: new ObjectId(req.params.id) }, product);
+    console.log(product.stock);
+    collection.updateOne({ _id: new ObjectId(req.params.id) }, [
+      {
+        $set: {
+          name: product.name,
+          sizes: product.sizes,
+          price: product.price,
+          stock: product.stock,
+          imgURL: product.imgURL,
+          details: product.details,
+        },
+      },
+    ]);
 
     res.send(result).status(200);
   } catch (error) {

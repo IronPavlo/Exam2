@@ -1,7 +1,8 @@
 import { useState,useEffect } from 'react'
 import Header from '../../components/Header/Header';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
+import "./ProductPage.css"
 
 function ProductPage(props) {
 
@@ -72,13 +73,20 @@ const SizeSelect = () => {
   return (
     <>
     <Header/>
+    
+     
+              
     <div className='productWrapper'>
-        <div className='productImageWrapper'>productImagePlaceHolder</div>
+        <div className='productImageWrapper'><img src={product[0].imgURL} alt={`Picture of ${product[0].name}`} /></div>
         <div className='productDetailsWrapper'>
             <h2 className='productName'>{product[0].name}</h2>
             <h3 className='productPrice'>€{product[0].price}</h3>
             <SizeSelect/>
             <AddToCartButton product={product[0]} selectedSize={selectedSize} stock={selectorValue}/>
+            <div>
+                <p></p>
+            </div>
+            <Link to={`/edit/${itemID}`}><span>Edit</span></Link>
         </div>
     </div>
 

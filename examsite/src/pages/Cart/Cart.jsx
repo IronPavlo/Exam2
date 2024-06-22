@@ -16,7 +16,6 @@ useEffect(()=>{
 },[cartSize])
 
 
-
 function CheckOut() {
     
   const cartContent=cartParsed;
@@ -29,7 +28,11 @@ return (
         fetch(`http://localhost:8080/checkout/${product.id}/${product.size}/${product.quantity}`,{method:"PATCH"})
       }
       localStorage.setItem("cart",JSON.stringify([]))
-     this.forceUpdate();
+      if(reRender){
+        reRenderSet(false);
+      }else{
+        reRenderSet(true);
+      }
     }}>Checkout</button>
   </>
     

@@ -2,8 +2,7 @@ import Navbar from "../Navbar/Navbar"
 import "./Header.css"
 
 
-function Header() {
-
+function Header(props) {
 
     
 
@@ -11,7 +10,7 @@ function Header() {
       <>
         <header>
             <div className="logo"><img src="/src/assets/ICLeather.svg" alt="" /> <h1>Leather Goods</h1></div>
-            <Navbar/>
+            <Navbar editPossible={props.editPossible}/>
         </header>
 
 
