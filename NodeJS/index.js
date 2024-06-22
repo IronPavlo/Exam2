@@ -158,7 +158,13 @@ app.patch("/update/:id", async (req, res) => {
     res.send(error);
   }
 });
-
+app.delete("/delete/:id", async (req, res) => {
+  let collection = await db.collection("Products");
+  let product = await collection.deleteOne({
+    _id: new ObjectId(req.params.id),
+  });
+  res.json(product).status(200);
+});
 app.listen(PORT, () => {
   console.log("Server Started");
 });

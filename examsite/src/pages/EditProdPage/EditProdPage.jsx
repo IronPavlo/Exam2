@@ -1,13 +1,17 @@
 import { useState,useEffect } from 'react'
 import Header from '../../components/Header/Header';
-import { Form, useParams } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import "./EditProdPage.css"
 
 function EditProdPage() {
 
     const { itemID } = useParams();
 
-  
+const[reRender,setReRender]=useState(true);
+useState((()=>{
+
+}),[reRender])
   const[productStored,setProductStorage]=useState({
     name:'',
     sizes:[],
@@ -323,6 +327,31 @@ useEffect(()=>{
             <br />
         <button type="submit">Add Product</button>
       </form>
+      <Popup className='popup' trigger={<button>DELETE</button>} modal >
+      
+      {close => (<>
+       <div> Are You Sure?</div>
+
+      <div className="modal">
+        <Link to="/shop">
+      <button className="sure" onClick={async()=>{
+        try {
+        console.log(productStored)
+            let response = await fetch(`http://localhost:8080/delete/${itemID}`,{method:"DELETE"});
+            return response.json()
+        } catch (error) {
+            console.error('Error fetching data:', error)
+        }
+        }}>
+          Yes
+        </button></Link>
+        <button className="notSure" onClick={close}>
+          No
+        </button>
+      </div>
+    </>
+    )}
+      </Popup>
     </div>
 
     </>

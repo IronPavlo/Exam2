@@ -11,7 +11,9 @@ function HomePage() {
     <>
     <Header/>
     <div className='exProd'>
-        <div className='featProd'>featured products</div>
+        <div className='featProd'>
+          
+        </div>
     </div>
     
 

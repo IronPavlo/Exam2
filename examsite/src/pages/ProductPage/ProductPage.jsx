@@ -84,7 +84,7 @@ const SizeSelect = () => {
             <SizeSelect/>
             <AddToCartButton product={product[0]} selectedSize={selectedSize} stock={selectorValue}/>
             <div>
-                <p></p>
+                <p>{product[0].details}</p>
             </div>
             <Link to={`/edit/${itemID}`}><span>Edit</span></Link>
         </div>

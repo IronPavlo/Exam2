@@ -1,0 +1,14 @@
+.popup-overlay{
+    background: rgba(0, 0, 0, .5);
+}
+.popup-overlay div{
+    background-color: white;
+}
+.popup-overlay div .sure{
+    color: black;
+    background-color: brown;
+}
+.popup-overlay div .notSure{
+    color: white;
+    background-color: brown;
+}
