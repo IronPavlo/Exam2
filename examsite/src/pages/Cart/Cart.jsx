@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react'
 import Header from '../../components/Header/Header';
 import {Link, useParams } from 'react-router-dom';
 import "./Cart.css"
-import CheckOut from '../../components/CheckOut/CheckOut';
+
 
 function Cart(props) {
 
@@ -14,6 +14,31 @@ console.log(cartParsed)
 useEffect(()=>{
 
 },[cartSize])
+
+
+
+function CheckOut() {
+    
+  const cartContent=cartParsed;
+
+return (
+  <>
+    <button onClick={()=>{
+      for (let i = 0; i < cartContent.length; i++) {
+        const product = cartContent[i];
+        fetch(`http://localhost:8080/checkout/${product.id}/${product.size}/${product.quantity}`,{method:"PATCH"})
+      }
+      localStorage.setItem("cart",JSON.stringify([]))
+     this.forceUpdate();
+    }}>Checkout</button>
+  </>
+    
+)
+}
+
+
+
+
   return (
     <>
     <Header/>
@@ -62,7 +87,15 @@ useEffect(()=>{
                   </div>
                   
         })}
-        <CheckOut cart={cartParsed}/>
+
+        {cartParsed.map((value,index)=>{
+            if(index==cartParsed.length-1 && cartParsed.length>0){
+              console.log("a")
+
+              return (<CheckOut key={index}/>)
+            }
+        })}
+        
       </div>
     </div> 
     </>

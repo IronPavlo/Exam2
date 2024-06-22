@@ -93,7 +93,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.XS": product[0].stock.XS - boughtstock },
+            $set: { "stock.XS": product[0].stock.XS - boughtstock },
           }
         );
         break;
@@ -109,7 +109,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.M": product[0].stock.M - boughtstock },
+            $set: { "stock.M": product[0].stock.M - boughtstock },
           }
         );
         break;
@@ -117,7 +117,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.L": product[0].stock.L - boughtstock },
+            $set: { "stock.L": product[0].stock.L - boughtstock },
           }
         );
         break;
@@ -125,7 +125,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.L": product[0].stock.XL - boughtstock },
+            $set: { "stock.L": product[0].stock.XL - boughtstock },
           }
         );
         break;
