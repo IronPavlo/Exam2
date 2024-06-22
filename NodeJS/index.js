@@ -80,7 +80,10 @@ app.post("/sell", async (req, res) => {
 app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
   try {
     let collection = await db.collection("Products");
-    let product = req.body;
+    let product = await collection
+      .find({ _id: new ObjectId(req.params.id) })
+      .toArray();
+    console.log(product[0]);
     let boughtstock = req.params.boughtstock;
     let size = req.params.size.toUpperCase();
     //console.log(size);
@@ -90,24 +93,23 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.XS": -boughtstock },
+            $inc: { "stock.XS": product[0].stock.XS - boughtstock },
           }
         );
         break;
       case "S":
         console.log(size);
-        collection.updateOne(
-          { _id: new ObjectId(req.params.id) },[{
-            $set: { "stock.S":  },
-          }]
-          
-        );
+        collection.updateOne({ _id: new ObjectId(req.params.id) }, [
+          {
+            $set: { "stock.S": product[0].stock.S - boughtstock },
+          },
+        ]);
         break;
       case "M":
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.M": -boughtstock },
+            $inc: { "stock.M": product[0].stock.M - boughtstock },
           }
         );
         break;
@@ -115,7 +117,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.L": -boughtstock },
+            $inc: { "stock.L": product[0].stock.L - boughtstock },
           }
         );
         break;
@@ -123,7 +125,7 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         collection.update(
           { _id: new ObjectId(req.params.id) },
           {
-            $inc: { "stock.L": -boughtstock },
+            $inc: { "stock.L": product[0].stock.XL - boughtstock },
           }
         );
         break;
