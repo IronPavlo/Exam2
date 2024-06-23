@@ -50,8 +50,10 @@ useEffect(()=>{fetchData()},[])
       </section>
       <section>
       <h2>Contacts</h2>
-      <div>Email: Lorem.ipsum@dolor.sit</div>
-      <div>Phone: +370 696 96942</div>
+      <div className='contacts'>
+      <div >Email: Lorem.ipsum@dolor.sit</div>
+      <div >Phone: +370 696 96942</div>
+      </div>
       </section>
     </main>
     </>

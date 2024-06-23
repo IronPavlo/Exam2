@@ -9,17 +9,14 @@ function Navbar(props) {
     setTimeout(()=>{
         setUpdate(updateRenderAmount+1)
     },3000)
-    let editPossible=[]
-  if (props.editPossible==true) {
-     editPossible=[1]
-  }
+  
 
     if(cart!=null && cart.length!=0){
       cartSize=String(cart.length)
     }
     return (
       <>
-        <ul className="navbar">
+        <ul className="navbar" >
             <div>
               <Link to={"/"}><span>Home</span></Link>
               <Link to={"/shop"}><span>Shop</span></Link>

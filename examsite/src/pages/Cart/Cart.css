@@ -1,16 +1,22 @@
 .cartWrapper{
     display: flex;
     justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .cartContentWrapper{
     display: flex;
     flex-direction: column;
-    width: 400px;
-    
+    max-width: 400px;
+    align-items: center;
+    gap: 10px;
 }
-div{
-    border: 1px solid red
+.cartContentWrapper div.cartItem{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
 }
 .cartItem{
     display: flex;
@@ -29,10 +35,7 @@ a{
     flex-direction: row;
     flex-grow: 1;
 }
-.cartItemExtra .cartItemImageWrapper{
-    text-align: end;
-    padding-right: 0.5em;
-}
+
 .cartItemExtra .cartItemDetails{
     text-align: start;
 }
@@ -40,14 +43,15 @@ a{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    width: 100px;
+
+    width: fit-content;
 }
 .cartItemImageWrapper{
 flex-grow: 1;
 align-self: center;
 }
 .cartItemImageWrapper img{
-    width: 100px;
+    max-width: 100px;
 
     }
 .cartItemQuantity{
@@ -60,7 +64,7 @@ align-self: center;
     flex-direction: row;
 }
 .cartItemPrice{
-    width: 60px;
+    max-width: 60px;
     align-self: center;
 }
 .cartContentTopCC{
@@ -68,14 +72,57 @@ align-self: center;
 }
 
 .cartContentTopQuantity{
-    width: 60px;
+    max-width: 60px;
 }
 .cartContentTopPrice{
-    width: 60px;
+    max-width: 60px;
     align-content: center;
     height: 100%;
+}
+.removeItem{
+    display: flex;
+    align-items: center;
 }
 .removeFromCart{
     background-color: white;
     color: black;
 }
+h2.cartItem{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 10px 10px 0 0;
+}
+
+@media(max-width:500px){
+ section{
+    font-size: 14px;
+ }
+ .removeItem{
+    display: flex;
+    flex-direction: column;
+}
+}
+@media(max-width:350px){
+    section{
+       font-size: 12px;
+    }
+    .removeItem{
+       display: flex;
+       flex-direction: column;
+   }
+   }
+   @media(min-width:500px){
+    .cartWrapper{
+    padding: 30px 40px;
+}}
+   @media(min-width:1024px){
+    .cartWrapper{
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+   }

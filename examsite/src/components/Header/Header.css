@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .logo img{
@@ -11,4 +12,9 @@
 }
 .logo h1{
     font-size: 2.5em;
+    font-family: "Playwrite FR Moderne", cursive;
+}
+header{
+    position: sticky;
+    top:-100px;
 }

@@ -12,3 +12,15 @@
     color: white;
     background-color: brown;
 }
+.modal{
+    display: flex;
+    justify-content: space-around
+}
+.areUSure{
+    text-align: center;
+}
+.popup-content{
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+}

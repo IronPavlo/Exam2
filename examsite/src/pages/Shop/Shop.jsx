@@ -8,7 +8,7 @@ function Shop() {
 const [products,setProductsData] = useState([]);
 const [searchQuery,setSearchQuery]=useState("no/na")
 const[pageNumber,setPageNumber]=useState(0);
-const[q,setQ]=useState("")
+
 const productData=useRef(0)
     
     useEffect(()=>{
@@ -31,7 +31,7 @@ const productData=useRef(0)
 
     function Filter() {
 
-        
+        const[q,setQ]=useState("")
       
         return (
           <>
@@ -95,21 +95,34 @@ const productData=useRef(0)
             <div className='pageNav' >
             {[1].map((val,ind)=>{
                 if(pageNumber==0){
-                    return <>
-                            <span>Page {pageNumber+1}</span>
+                    return <div key={ind}>
+                            <span >Page {pageNumber+1}</span>
                             <button onClick={()=>{
                                 setPageNumber(pageNumber+1); 
                                 
                             }}>{">"}</button>
-                            </>
+                            </div>
                 }else if(pageNumber>0 && products.length<18){
-                    return <><button onClick={()=>{
+                    return <div key={ind}>
+                    <button onClick={()=>{
                                 setPageNumber(pageNumber-1); 
                                 
                             }}>{"<"}</button>
-                            <span>Page {pageNumber+1}</span>
+                            <span key={ind}>Page {pageNumber+1}</span>
                             
-                            </>
+                            </div>
+                }else{
+                    return <div key={ind}>
+                    <button onClick={()=>{
+                                setPageNumber(pageNumber-1); 
+                                
+                            }}>{"<"}</button>
+                            <span key={ind}>Page {pageNumber+1}</span>
+                            <button onClick={()=>{
+                                setPageNumber(pageNumber+1); 
+                                
+                            }}>{">"}</button>
+                            </div>
                 }
 
             })}

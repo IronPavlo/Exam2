@@ -19,6 +19,7 @@ section h2{
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    box-shadow: 5px 5px rgba(86, 85, 85, 0.482);
 }
 section{
     max-width: 800px;
@@ -31,9 +32,17 @@ section{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    box-shadow: 5px 5px rgba(132, 130, 130, 0.482);
 }
 section p{
-    
+    box-shadow: 5px 5px rgba(86, 85, 85, 0.482);
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.contacts{
+    box-shadow: 5px 5px rgba(86, 85, 85, 0.482);
+    width: 90%;
     background-color: white;
     padding: 10px;
     border-radius: 10px;

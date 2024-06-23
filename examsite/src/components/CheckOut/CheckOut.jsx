@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-
+import "./CheckOut.css"
 
 
 function CheckOut(props) {
@@ -11,7 +11,7 @@ function CheckOut(props) {
 
   return (
     <>
-      <button onClick={()=>{
+      <button className='checkout' onClick={()=>{
         for (let i = 0; i < cartContent.length; i++) {
           const product = cartContent[i];
           fetch(`http://localhost:8080/checkout/${product.id}/${product.size}/${product.quantity}`,{method:"PATCH"})

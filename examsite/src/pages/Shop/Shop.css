@@ -1,9 +1,16 @@
-
+.shopTop h1{
+    box-shadow: 5px 5px rgba(86, 85, 85, 0.482);
+    background-color: white;
+    padding: 20px 50px;
+    border-radius: 10px;
+margin: 10px;
+}
 .shopGrid{
     display: grid;
     margin: 10px;
     justify-content: center;
     gap: 10px;
+    justify-items: center
 }
 div.wrapper{
     display: flex;
@@ -18,10 +25,26 @@ div.wrapper button{
     background-color: white;
     padding:5px 20px
 }
-@media(min-width:500px){
+@media(min-width:700px){
+    .shopGrid{
+        display: grid;
+        grid-template-columns: auto auto ;
+        gap: 10px;
+        justify-items: center
+    }
+}
+
+
+
+@media(min-width:850px){
+    section.shopActual{
+       max-width: fit-content;
+       width: 95vw;
+    }
     .shopGrid{
         display: grid;
         grid-template-columns: auto auto auto;
         gap: 10px;
+        justify-items: center
     }
 }

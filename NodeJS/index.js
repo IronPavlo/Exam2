@@ -54,25 +54,15 @@ app.get("/products/:search/:query", async (req, res) => {
     let aggregTest = await collection
       .aggregate([
         {
-          $search:
-            /**
-             * index: The name of the Search index.
-             * text: Analyzed search, with required fields of query and path, the analyzed field(s) to search.
-             * compound: Combines ops.
-             * span: Find in text field regions.
-             * exists: Test for presence of a field.
-             * near: Find near number or date.
-             * range: Find in numeric or date range.
-             */
-            {
-              index: "searchname",
-              text: {
-                query: `${req.params.query}`,
-                path: {
-                  wildcard: "*",
-                },
+          $search: {
+            index: "searchname",
+            text: {
+              query: `${req.params.query}`,
+              path: {
+                wildcard: "*",
               },
             },
+          },
         },
         { $skip: skipParam },
         {

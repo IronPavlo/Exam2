@@ -24,4 +24,53 @@ font-size: 2em;
     padding: 10px;
     border-radius: 10px;
     border: 2px solid black;
+    width: 100%;
+    max-width: 300px;
+}
+@media(min-width:700px){
+    .productCardWrapper{
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        width: 300px;
+    }
+}@media(min-width:800px){
+    .productCardWrapper{
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        width: 300px;
+    }
+}@media(min-width:850px){
+    .productCardWrapper{
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        width: 200px;
+    
+    }.prodCardName{
+        font-weight: bold;
+        font-size: 1.5em;
+        }
+    .prodCardPrice{
+         font-size: 1.0em;
+    }
+}@media(min-width:1024px){
+    .productCardWrapper{
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        width: 290px;
+    }
+    .prodCardName{
+        font-weight: bold;
+        font-size: 2em;
+        }
+    .prodCardPrice{
+         font-size: 1.5em;
+    }
 }
