@@ -9,10 +9,14 @@
     width: 400px;
     
 }
+div{
+    border: 1px solid red
+}
 .cartItem{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around
 }
 a{
     display: flex;
@@ -36,13 +40,20 @@ a{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    width: 100px;
 }
 .cartItemImageWrapper{
 flex-grow: 1;
+align-self: center;
 }
+.cartItemImageWrapper img{
+    width: 100px;
+
+    }
 .cartItemQuantity{
     max-width: 60px;
     align-self: center;
+    padding-right: 15px;
 }
 .cartContentTop{
     display: flex;

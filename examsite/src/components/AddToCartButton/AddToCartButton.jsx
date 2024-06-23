@@ -12,7 +12,8 @@ function AddToCartButton(props) {
       name:addedProduct.name,
       price:addedProduct.price,
       size:props.selectedSize,
-      quantity:selectedQuantity
+      quantity:selectedQuantity,
+      imgURL:addedProduct.imgURL
     }
     useEffect(()=>{
     },[selectedQuantity])

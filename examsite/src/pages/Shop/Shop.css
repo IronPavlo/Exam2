@@ -3,6 +3,20 @@
     display: grid;
     margin: 10px;
     justify-content: center;
+    gap: 10px;
+}
+div.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.wrapper input{
+    font-size: 20px; margin-right: 10px;
+}
+div.wrapper button{
+    color: black;
+    background-color: white;
+    padding:5px 20px
 }
 @media(min-width:500px){
     .shopGrid{

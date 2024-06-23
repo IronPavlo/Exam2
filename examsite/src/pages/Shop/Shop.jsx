@@ -7,7 +7,8 @@ function Shop() {
 
 const [products,setProductsData] = useState([]);
 const [searchQuery,setSearchQuery]=useState("no/na")
-
+const[pageNumber,setPageNumber]=useState(0);
+const[q,setQ]=useState("")
 const productData=useRef(0)
     
     useEffect(()=>{
@@ -15,12 +16,11 @@ const productData=useRef(0)
         fetchData(searchQuery)
         productData.current=productData.current+1;
         
-    },[searchQuery])
-    
+    },[searchQuery,pageNumber])
 
     const fetchData=async(query)=>{
         try {
-            const response = await fetch(`http://localhost:8080/products/${query}`);
+            const response = await fetch(`http://localhost:8080/products/${query}?limit=18&skip=${pageNumber*18}`);
             const result = await response.json();
             setProductsData(result);
             console.log(result)
@@ -31,11 +31,11 @@ const productData=useRef(0)
 
     function Filter() {
 
-        const[q,setQ]=useState("")
+        
       
         return (
           <>
-          
+        
             <div className="wrapper">
                   <div className="search-wrapper">
                       <label htmlFor="search-form">
@@ -57,13 +57,14 @@ const productData=useRef(0)
                         if(q){
                             setSearchQuery(`yes/${q}`)
                             this.forceUpdate()
+                            
                             console.log(1)
                         }
                         setSearchQuery(`no/na`)
                       }}>Search</button>
                 </div>
              </div>
-      
+       
           </>
         )
       }
@@ -72,27 +73,54 @@ const productData=useRef(0)
   return (
     <>
     <Header/>
-    <section className='shopTop'>
-        <div>Shop</div>
-    </section>
-    <br />
-    <section className='shopActual'>
-        <div className='shopWrapper'>
-            <div className='filterWrapper'>
-            <Filter/>
+    <main>
+        <section className='shopTop'>
+            <h1>Shop</h1>
+        </section>
+        <section className='shopActual'>
+            <div className='shopWrapper'>
+                <div className='filterWrapper'>
+                <Filter/>
+                </div>
+                <br />
+                <div className='shopGrid'>
+                    {products.map((product,index)=>{
+                        return <ProductCard key={index} product={product}/>
+                    })}
+                    
+                    
+                </div>
+
             </div>
-            <br />
-            <div className='shopGrid'>
-                {products.map((product,index)=>{
-                    return <ProductCard key={index} product={product}/>
-                })}
+            <div className='pageNav' >
+            {[1].map((val,ind)=>{
+                if(pageNumber==0){
+                    return <>
+                            <span>Page {pageNumber+1}</span>
+                            <button onClick={()=>{
+                                setPageNumber(pageNumber+1); 
+                                
+                            }}>{">"}</button>
+                            </>
+                }else if(pageNumber>0 && products.length<18){
+                    return <><button onClick={()=>{
+                                setPageNumber(pageNumber-1); 
+                                
+                            }}>{"<"}</button>
+                            <span>Page {pageNumber+1}</span>
+                            
+                            </>
+                }
+
+            })}
                 
                 
+                
+            
+            
             </div>
-
-        </div>
-    </section>
-
+        </section>
+    </main>
     </>
   )
 }

@@ -48,11 +48,8 @@ return (
     <div className='cartWrapper'>
       <div className='cartContentWrapper'>
           <div className='cartItem'>
-            <div className='cartItemExtra'>
-              <div className='cartItemImageWrapper'>Cart</div>
-              <div className='cartItemDetails'>Contents</div>
-            </div>
-            <div className='cartContentTopPrice'>Price</div>
+            
+          Cart
             
           </div>
 
@@ -60,20 +57,22 @@ return (
 
           return  <div key={index} className='cartItem' id={`${product.id}${product.quantity}${product.size}`}>
                     <Link to={`/shop/${product.id}`}>
-                    <div className='cartItemImageWrapper'>imgplaceholder</div>
+                    <div className='cartItemImageWrapper'><img src={product.imgURL} alt="" /></div>
                     <div className='cartItemDetails'>
                       <h3>{product.name}</h3>
                       <h5>Size: {product.size.toUpperCase()}</h5>
                     </div>
                     </Link>
-                    <div className='cartItemQuantity'>
-                      x{product.quantity}
-                    </div>
-                    <div className='cartItemPrice'>
-                    €{Number(product.price) * Number(product.quantity)}
-                    </div>
-                    
                     <div>
+                      <div className='cartItemQuantity'>
+                        Quantity:{`${product.quantity}`}
+                      </div>
+                      <div className='cartItemPrice'>
+                      €{Number(product.price) * Number(product.quantity)}
+                      </div>
+                    </div>
+                    <div>
+                      Remove Item
                       <button className='removeFromCart' onClick={()=>{
               
                         cartParsed.splice(index,1)

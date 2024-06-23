@@ -25,9 +25,32 @@ connect();
 
 app.get("/products/:search/:query", async (req, res) => {
   let collection = await db.collection("Products");
+  let limitparam = Number(req.query.limit);
+  let skipParam = Number(0);
+  if (Number(req.query.skip) > 0) {
+    skipParam = Number(req.query.skip);
+  }
 
   let result = await collection.find({}).toArray();
-  if (req.params.search == "yes") {
+  if (req.params.search == "yes" && limitparam == undefined) {
+    let aggregTest = await collection
+      .aggregate([
+        {
+          $search: {
+            index: "searchname",
+            text: {
+              query: `${req.params.query}`,
+              path: {
+                wildcard: "*",
+              },
+            },
+          },
+        },
+        { $skip: skipParam },
+      ])
+      .toArray();
+    res.send(aggregTest).status(200);
+  } else if (req.params.search == "yes" && limitparam > 0) {
     let aggregTest = await collection
       .aggregate([
         {
@@ -51,9 +74,23 @@ app.get("/products/:search/:query", async (req, res) => {
               },
             },
         },
+        { $skip: skipParam },
+        {
+          $limit: limitparam,
+        },
       ])
       .toArray();
     res.send(aggregTest).status(200);
+  } else if (req.params.search == "no" && limitparam > 0) {
+    let limitedResults = await collection
+      .aggregate([
+        { $skip: skipParam },
+        {
+          $limit: limitparam,
+        },
+      ])
+      .toArray();
+    res.send(limitedResults).status(200);
   } else {
     res.send(result).status(200);
   }
@@ -69,7 +106,6 @@ app.post("/sell", async (req, res) => {
   try {
     let collection = await db.collection("Products");
     let product = req.body;
-    console.log(product);
 
     collection.insertOne(product);
     res.json(product).status(200);
@@ -83,10 +119,8 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
     let product = await collection
       .find({ _id: new ObjectId(req.params.id) })
       .toArray();
-    console.log(product[0]);
     let boughtstock = req.params.boughtstock;
     let size = req.params.size.toUpperCase();
-    //console.log(size);
 
     switch (size) {
       case "XS":
@@ -97,7 +131,6 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         ]);
         break;
       case "S":
-        console.log(size);
         collection.updateOne({ _id: new ObjectId(req.params.id) }, [
           {
             $set: { "stock.S": product[0].stock.S - boughtstock },
@@ -126,7 +159,6 @@ app.patch("/checkout/:id/:size/:boughtstock", async (req, res) => {
         ]);
         break;
       default:
-        console.log("sodasdas");
         break;
     }
 
@@ -139,7 +171,6 @@ app.patch("/update/:id", async (req, res) => {
   try {
     let collection = await db.collection("Products");
     let product = req.body;
-    console.log(product.stock);
     collection.updateOne({ _id: new ObjectId(req.params.id) }, [
       {
         $set: {

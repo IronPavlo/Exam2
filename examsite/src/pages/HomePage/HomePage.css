@@ -3,6 +3,45 @@
     display: flex;
     justify-content: center;
 }
-div{
-    border: 2px solid rgb(255, 0, 0);
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.featProd{
+    
+    display: flex;
+    flex-direction: column;
+    gap :20px
+}
+section h2{
+    width: 90%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+section{
+    max-width: 800px;
+    width: 90vw;
+    background-color: rgb(30, 135, 210);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+section p{
+    
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+@media(min-width:500px){
+    .featProd{
+        display: flex;
+        gap :20px;
+        flex-direction: row;
+    }
 }
