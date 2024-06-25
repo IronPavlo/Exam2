@@ -6,7 +6,7 @@ This project is a shop for different leather goods, I got the idea of making it 
 - NodeJS(was made with v20.12.2)
 - Windows 11(hasn't been tested with any other OS)
 # Getting Started
-1. Download the files in this repository(examsite & NodeJS)
+1. Download the folders in this repository(examsite & NodeJS)
 2. Extract the two folder & put them in the same folder
 3. Open Visual Studio Code & open the folder that holds both examsite & NodeJS folders
 4. Open the terminal and type in ```cd NodeJS``` then press enter
