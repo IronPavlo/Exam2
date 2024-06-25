@@ -8,7 +8,11 @@ function Cart(props) {
 
 const[cartSize,cartSizeSet]=useState(0)
 const[reRender,reRenderSet]=useState(false)
-const cartStorage = localStorage.getItem("cart")
+let cartStorage = localStorage.getItem("cart")
+if (cartStorage===null) {
+  cartStorage=localStorage.setItem("cart",JSON.stringify([]))
+}
+
 const cartParsed = JSON.parse(cartStorage)
 console.log(cartParsed)
 useEffect(()=>{
