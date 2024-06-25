@@ -27,7 +27,7 @@ function SellProduct(props) {
   )
   const fetchData=async()=>{
     try {
-      console.log(productStored)
+   
         let response = await fetch(`http://localhost:8080/sell`,{method:"POST",body:JSON.stringify(productStored),headers: {
           "Content-type": "application/json; charset=UTF-8",
         },});
@@ -87,7 +87,7 @@ function SellProduct(props) {
           <input type="text" name='formProdName' id='formProdName' defaultValue={productStored.name} onChange={()=>{
             productStored.name=document.getElementById('formProdName').value;
             localStorage.setItem("currentProd",JSON.stringify(productStored))
-            console.log(productStored)
+           
           }}/>
           <label htmlFor=""></label>
           <div>Sizes</div>
@@ -98,15 +98,15 @@ function SellProduct(props) {
                 return <input key={index} type="checkbox" name="xsSizeOption" id="xsSizeOption" defaultChecked onChange={()=>{
                           if(productStored.sizes.includes("XS")){
                             productStored.stock.XS=0;
-                            console.log(productStored.stock.XS)    
+                           
                             productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
 
-                            console.log(productStored.sizes)                   
+                                           
                           }else{
                             productStored.sizes.push("XS")
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                            
                           }
                         }}/>}
               else{
@@ -114,11 +114,11 @@ function SellProduct(props) {
                   if(productStored.sizes.includes("XS")){
                     productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }else{
                     productStored.sizes.push("XS")
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }
                 }}/>}
               }
@@ -133,11 +133,11 @@ function SellProduct(props) {
                           if(productStored.sizes.includes("S")){
                             productStored.sizes.splice(productStored.sizes.indexOf("S"),1)
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                            
                           }else{
                             productStored.sizes.push("S")
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                            
                           }
                         }}/>}
               else{
@@ -145,11 +145,11 @@ function SellProduct(props) {
                   if(productStored.sizes.includes("S")){
                     productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }else{
                     productStored.sizes.push("S")
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }
                 }}/>}
               }
@@ -163,11 +163,11 @@ function SellProduct(props) {
                           if(productStored.sizes.includes("M")){
                             productStored.sizes.splice(productStored.sizes.indexOf("M"),1)
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                            
                           }else{
                             productStored.sizes.push("M")
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                           
                           }
                         }}/>}
               else{
@@ -175,11 +175,11 @@ function SellProduct(props) {
                   if(productStored.sizes.includes("M")){
                     productStored.sizes.splice(productStored.sizes.indexOf("M"),1)
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                   
                   }else{
                     productStored.sizes.push("M")
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }
                 }}/>}
               }
@@ -193,11 +193,11 @@ function SellProduct(props) {
                           if(productStored.sizes.includes("L")){
                             productStored.sizes.splice(productStored.sizes.indexOf("L"),1)
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                           
                           }else{
                             productStored.sizes.push("L")
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                           
                           }
                         }}/>}
               else{
@@ -205,11 +205,11 @@ function SellProduct(props) {
                   if(productStored.sizes.includes("L")){
                     productStored.sizes.splice(productStored.sizes.indexOf("L"),1)
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }else{
                     productStored.sizes.push("L")
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                   
                   }
                 }}/>}
               }
@@ -223,11 +223,11 @@ function SellProduct(props) {
                           if(productStored.sizes.includes("XL")){
                             productStored.sizes.splice(productStored.sizes.indexOf("XL"),1)
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                           
                           }else{
                             productStored.sizes.push("XL")
                             localStorage.setItem("currentProd",JSON.stringify(productStored))
-                            console.log(productStored.sizes)
+                            
                           }
                         }}/>}
               else{
@@ -235,11 +235,11 @@ function SellProduct(props) {
                   if(productStored.sizes.includes("XL")){
                     productStored.sizes.splice(productStored.sizes.indexOf("XL"),1)
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                    
                   }else{
                     productStored.sizes.push("XL")
                     localStorage.setItem("currentProd",JSON.stringify(productStored))
-                    console.log(productStored.sizes)
+                   
                   }
                 }}/>}
               }
@@ -252,7 +252,7 @@ function SellProduct(props) {
             <input type="number" name="xsSizeStock" id="xsSizeStock" min={0} defaultValue={0}  onChange={(e)=>{
               if (productStored.sizes.includes("XS")) {
                 productStored.stock.XS=Number(e.target.value)
-                console.log(productStored.stock.XS)
+              
                 localStorage.setItem("currentProd",JSON.stringify(productStored));
               }
           

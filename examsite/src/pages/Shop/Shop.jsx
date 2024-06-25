@@ -12,7 +12,7 @@ const[pageNumber,setPageNumber]=useState(0);
 const productData=useRef(0)
     
     useEffect(()=>{
-        console.log("fetched")
+
         fetchData(searchQuery)
         productData.current=productData.current+1;
         
@@ -23,7 +23,7 @@ const productData=useRef(0)
             const response = await fetch(`http://localhost:8080/products/${query}?limit=18&skip=${pageNumber*18}`);
             const result = await response.json();
             setProductsData(result);
-            console.log(result)
+         
         } catch (error) {
             console.error('Error fetching data:', error)
         }
@@ -58,7 +58,7 @@ const productData=useRef(0)
                             setSearchQuery(`yes/${q}`)
                             this.forceUpdate()
                             
-                            console.log(1)
+                            
                         }
                         setSearchQuery(`no/na`)
                       }}>Search</button>

@@ -14,7 +14,7 @@ if (cartStorage===null) {
 }
 
 const cartParsed = JSON.parse(cartStorage)
-console.log(cartParsed)
+
 useEffect(()=>{
 
 },[cartSize])
@@ -99,7 +99,7 @@ return (
 
             {cartParsed.map((value,index)=>{
                 if(index==cartParsed.length-1 && cartParsed.length>0){
-                  console.log("a")
+
 
                   return (<CheckOut key={index}/>)
                 }

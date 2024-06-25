@@ -32,7 +32,7 @@ useEffect((()=>{
   )
 useEffect(()=>{
     fetchData()
-    console.log(productStored.stock.XS)
+
 },[])
 
   const fetchData=async()=>{
@@ -40,7 +40,7 @@ useEffect(()=>{
       
         const response = await fetch(`http://localhost:8080/products/${itemID}`);
         const result = await response.json()
-        console.log(result)
+  
         setProductStorage(result[0])
         setProductData(result[0])
     } catch (error) {
@@ -49,7 +49,7 @@ useEffect(()=>{
 }
   const fetchDataPatch=async()=>{
     try {
-      console.log(productStored)
+ 
         let response = await fetch(`http://localhost:8080/update/${itemID}`,{method:"PATCH",body:JSON.stringify(productStored),headers: {
           "Content-type": "application/json; charset=UTF-8",
         },});
@@ -91,7 +91,6 @@ useEffect(()=>{
                 (sizeArray[3].checked && productStored.stock.L>0) || 
                 (sizeArray[4].checked && productStored.stock.XL>0)) && productStored.name!=""){
                     fetchDataPatch()
-                  console.log(1)
                 }
             
                 
@@ -101,7 +100,7 @@ useEffect(()=>{
             <input type="text" name='formProdName' id='formProdName' defaultValue={productStored.name} onChange={()=>{
               productStored.name=document.getElementById('formProdName').value;
 
-              console.log(productStored)
+       
             }}/>
             <label htmlFor=""></label>
             <div className='prodEdSellTitles'>Sizes</div>
@@ -112,13 +111,13 @@ useEffect(()=>{
                   return <input key={index} type="checkbox" name="xsSizeOption" id="xsSizeOption" defaultChecked onChange={()=>{
                             if(productStored.sizes.includes("XS")){
                               productStored.stock.XS=0;
-                              console.log(productStored.stock.XS)    
+                                 
                               productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
 
-                              console.log(productStored.sizes)                   
+                                          
                             }else{
                               productStored.sizes.push("XS")
-                              console.log(productStored.sizes)
+                             
                             }
                           }}/>}
                 else{
@@ -126,11 +125,9 @@ useEffect(()=>{
                     if(productStored.sizes.includes("XS")){
                       productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
               
-                      console.log(productStored.sizes)
                     }else{
                       productStored.sizes.push("XS")
                 
-                      console.log(productStored.sizes)
                     }
                   }}/>}
                 }
@@ -145,11 +142,9 @@ useEffect(()=>{
                             if(productStored.sizes.includes("S")){
                               productStored.sizes.splice(productStored.sizes.indexOf("S"),1)
                           
-                              console.log(productStored.sizes)
                             }else{
                               productStored.sizes.push("S")
                               
-                              console.log(productStored.sizes)
                             }
                           }}/>}
                 else{
@@ -157,11 +152,9 @@ useEffect(()=>{
                     if(productStored.sizes.includes("S")){
                       productStored.sizes.splice(productStored.sizes.indexOf("XS"),1)
               
-                      console.log(productStored.sizes)
                     }else{
                       productStored.sizes.push("S")
                   
-                      console.log(productStored.sizes)
                     }
                   }}/>}
                 }
@@ -175,11 +168,9 @@ useEffect(()=>{
                             if(productStored.sizes.includes("M")){
                               productStored.sizes.splice(productStored.sizes.indexOf("M"),1)
                           
-                              console.log(productStored.sizes)
                             }else{
                               productStored.sizes.push("M")
                             
-                              console.log(productStored.sizes)
                             }
                           }}/>}
                 else{
@@ -187,11 +178,9 @@ useEffect(()=>{
                     if(productStored.sizes.includes("M")){
                       productStored.sizes.splice(productStored.sizes.indexOf("M"),1)
                   
-                      console.log(productStored.sizes)
                     }else{
                       productStored.sizes.push("M")
                     
-                      console.log(productStored.sizes)
                     }
                   }}/>}
                 }
@@ -205,11 +194,9 @@ useEffect(()=>{
                             if(productStored.sizes.includes("L")){
                               productStored.sizes.splice(productStored.sizes.indexOf("L"),1)
                         
-                              console.log(productStored.sizes)
                             }else{
                               productStored.sizes.push("L")
       
-                              console.log(productStored.sizes)
                             }
                           }}/>}
                 else{
@@ -217,11 +204,10 @@ useEffect(()=>{
                     if(productStored.sizes.includes("L")){
                       productStored.sizes.splice(productStored.sizes.indexOf("L"),1)
           
-                      console.log(productStored.sizes)
+                      
                     }else{
                       productStored.sizes.push("L")
                 
-                      console.log(productStored.sizes)
                     }
                   }}/>}
                 }
@@ -235,11 +221,11 @@ useEffect(()=>{
                             if(productStored.sizes.includes("XL")){
                               productStored.sizes.splice(productStored.sizes.indexOf("XL"),1)
                         
-                              console.log(productStored.sizes)
+                              
                             }else{
                               productStored.sizes.push("XL")
                             
-                              console.log(productStored.sizes)
+                              
                             }
                           }}/>}
                 else{
@@ -247,11 +233,11 @@ useEffect(()=>{
                     if(productStored.sizes.includes("XL")){
                       productStored.sizes.splice(productStored.sizes.indexOf("XL"),1)
                     
-                      console.log(productStored.sizes)
+                      
                     }else{
                       productStored.sizes.push("XL")
                   
-                      console.log(productStored.sizes)
+                     
                     }
                   }}/>}
                 }
@@ -341,7 +327,7 @@ useEffect(()=>{
             <Link to="/shop">
           <button className="sure" onClick={async()=>{
             try {
-            console.log(productStored)
+            
                 let response = await fetch(`http://localhost:8080/delete/${itemID}`,{method:"DELETE"});
                 return response.json()
             } catch (error) {

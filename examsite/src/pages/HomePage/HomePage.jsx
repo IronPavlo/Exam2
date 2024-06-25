@@ -12,7 +12,7 @@ const [featuredProducts,setFeaturedProducts]=useState([]);
         const response = await fetch(`http://localhost:8080/products/no/na?limit=2`);
         const result = await response.json();
         setFeaturedProducts(result)
-        console.log(result)
+       
     } catch (error) {
         console.error('Error fetching data:', error)
     }
