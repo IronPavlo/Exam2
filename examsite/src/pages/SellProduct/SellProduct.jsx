@@ -78,6 +78,7 @@ function SellProduct(props) {
                     imgURL:""
                   }))
               setProductStorage(JSON.parse(localStorage.getItem("currentProd")))
+              alert("Product added to store")
               }
           
               
@@ -297,7 +298,7 @@ function SellProduct(props) {
           <label htmlFor="formProdPrice">Price</label>
           <br />
           <span>€</span>
-          <input type="number" name="formProdPrice" id="formProdPrice" min={0} placeholder={0} required onChange={(e)=>{
+          <input type="number" name="formProdPrice" id="formProdPrice" min={0} placeholder={0} step={0.01} required onChange={(e)=>{
               
                 productStored.price=e.target.value
                 localStorage.setItem("currentProd",JSON.stringify(productStored));

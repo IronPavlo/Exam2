@@ -91,6 +91,7 @@ useEffect(()=>{
                 (sizeArray[3].checked && productStored.stock.L>0) || 
                 (sizeArray[4].checked && productStored.stock.XL>0)) && productStored.name!=""){
                     fetchDataPatch()
+                    alert("Product edited")
                 }
             
                 
